@@ -1,6 +1,6 @@
 == Maintainable JavaScript
 
-video::http://www.youtube.com/watch?v=c-kav7Tf834[height='300', width='500', poster='generic_video.png']
+video::http://www.youtube.com/embed/c-kav7Tf834[height='300', width='100%']
 
 .Maintainable JavaScript
 ****
