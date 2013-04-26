@@ -1,0 +1,8 @@
+video::http://www.youtube.com/watch?v=c-kav7Tf834[height='300', width='500', poster='generic_video.png']
+
+.Maintainable JavaScript
+****
+_Nicholas Zakas_
+
+Writing JavaScript for fun and writing it professionally are two different things. Learn the practices that make JavaScript maintainable over the long run, reducing errors and making your code easily adaptable to future changes.
+****
