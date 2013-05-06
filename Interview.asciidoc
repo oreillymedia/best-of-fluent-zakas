@@ -21,7 +21,7 @@ Nicholas Zakas interviewed by Mac Slocum at Fluent 2012.
 
 [1:03] Another part is following some good programming practices. For instance, doing a lot of browser sniffing is a really bad idea, because browsers change all the time. You'll constantly be left with a maintenance nightmare of going in and fixing that when new browsers come up. You want to avoid that.
 
-The last part is using automation to your advantage. Automation is what basically helps you to make sure that your code is doing certain things without you manually going in and doing it. You can run JS [inaudible 01: [1:21] 34] to check if your code is well formed. You can run code style checks. You can run unit tests. Running those automatically rather than manually will just save you a lot of time.
+The last part is using automation to your advantage. Automation is what basically helps you to make sure that your code is doing certain things without you manually going in and doing it. You can run JSHint to check if your code is well formed. You can run code style checks. You can run unit tests. Running those automatically rather than manually will just save you a lot of time.
 
 *Slocum:* [1:47] What about mindset? Should developers, even the lone wolf developers, should all developers assume that at some point someone may be trying to read and interact with their code?
 
