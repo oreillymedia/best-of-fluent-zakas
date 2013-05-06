@@ -6,3 +6,39 @@ video::http://www.youtube.com/embed/a-elnKDHezA[height='300', width='100%']
 ****
 Nicholas Zakas interviewed by Mac Slocum at Fluent 2012.
 ****
+
+=== Video Transcript
+
+*Mac Slocum:* [0:00] What is maintainable JavaScript?
+
+*Nicholas Zakas:* [0:03] Maintainable JavaScript is basically code that will last for a while. JavaScript is written in such a way that next week, when a new browser comes out, it's not just going to completely fall apart.
+
+[0:17] You have put a little bit more thought into it, followed some patterns and conventions that help you and other people on your team to continue to work with it over time without saying, "Oh man, I just need to rewrite this whole thing."
+
+*Slocum:* [0:31] What are the fundamentals?
+
+*Zakas:* [0:33] The fundamental pieces are one, deciding on a style, within your team. Style is very personal. My style would be different from your style. It's different from company to company. It's not really about there being a right style and a wrong style, so much as there being one style. Everybody is speaking the same language. That allows multiple people on the same team to work with different peoples' code very easily, because it all looks the same. It all acts the same. It all points the same.
+
+[1:03] Another part is following some good programming practices. For instance, doing a lot of browser sniffing is a really bad idea, because browsers change all the time. You'll constantly be left with a maintenance nightmare of going in and fixing that when new browsers come up. You want to avoid that.
+
+The last part is using automation to your advantage. Automation is what basically helps you to make sure that your code is doing certain things without you manually going in and doing it. You can run JS [inaudible 01: [1:21] 34] to check if your code is well formed. You can run code style checks. You can run unit tests. Running those automatically rather than manually will just save you a lot of time.
+
+*Slocum:* [1:47] What about mindset? Should developers, even the lone wolf developers, should all developers assume that at some point someone may be trying to read and interact with their code?
+
+*Zakas:* [1:57] I think, especially now, in the day and age of open source, if you are doing anything that you intend to be open source, you need to assume that somebody else is going to be looking at your code. Even in some cases, if you're just working on a high profile site, you also have to expect that somebody is going to be viewing source, digging in, and seeing how you did certain things.
+
+[2:17] Keeping in mind that you need to write your code so people can read it, secondarily so that the computer can execute it, usually helps.
+
+*Slocum:* [2:29] Last question. I imagine that your focus on maintainable JavaScript is born from bad experiences of not having maintainable JavaScript. Have you ever had to just start from scratch because code was just completely inaccessible?
+
+*Zakas:* [2:44] Oh yeah, there are plenty of times when that happens, and there are plenty of times when you wish that you could just start from scratch. What I've been trying to do is help people to bridge that gap.
+
+[2:56] I like to tell people that when you're writing maintainable code, it should last for five years. You shouldn't have to completely destroy it and build it back up.
+
+[3:04] I have definitely been on projects where wow, this code is terrible. I don't know how far I can push it before I need to rewrite it all because it's just going to break. Ideally, you don't end up in that situation. You have extension points built in. But sometimes you just have to say, "Look, I've push this as far as I can, and if you actually want things to be better, I have to have the time to rewrite it."
+
+[3:28] Of course, the business side of things doesn't like you to be spending time rewriting all the time. You need to keep that in your back pocket rather than coming out every year and saying, "It's time to rewrite again."
+
+*Slocum:* [3:40] Well, thanks so much for being with us. I appreciate you taking the time.
+
+*Zakas:* [3:42] Thanks for having me.
