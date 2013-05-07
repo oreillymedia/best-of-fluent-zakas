@@ -8,3 +8,802 @@ _Nicholas Zakas_
 
 Writing JavaScript for fun and writing it professionally are two different things. Learn the practices that make JavaScript maintainable over the long run, reducing errors and making your code easily adaptable to future changes.
 ****
+
+=== Video Transcript
+
+been crammed into your brains. I appreciate you coming by. Am I the
+only one who's wearing a sport coat on stage?
+
+[0:19] Here's the lesson. Just because JavaScript is classless
+doesn't mean you have to be.
+
+_[laughter]_
+
+[0:27] That's the only joke. Thank you very much.
+
+[0:40] A little bit about me before I get started. I'm actually
+working for a startup now. I'm a cofounder and chief architect at
+the startup called WellFurnished. I'm not going to go too much into
+it. All I'm going to say is that we think there's a huge
+opportunity in the furniture industry because it hasn't changed in,
+like, ever. There's a lot of interesting things that we're planning
+on doing to help make the furniture buying experience a lot better.
+Go check it out. It's WellFurnished.com. I'm very proud of it
+mostly because we didn't remove any vowels from the name.
+
+_[laughter]_
+
+[1:16] I've written some books. There's this one, "High Performance
+JavaScript." This one, "Professional JavaScript for Web
+Developers," which is really, really thick, which I think is a mark
+of a good book or else a mark of me not having any life for two
+straight years, one or the other. And then the most recent one,
+"Maintainable JavaScript."
+
+[1:41] How many people got a book today? Oh, all of you are here!
+Awesome. You guys are lucky. I haven't even gotten a book yet. It
+just came out today. That's where you want to go if you find this
+talk interesting and you want to learn a little bit more. You
+should go find one of those people who just had their hands up.
+They have a book.
+
+[2:01] You can follow me on Twitter. I am @slicknet. If everybody
+goes and tweets me at me right now, I can figure out how many
+people were in this room later. I told you. That wasn't a joke.
+There was just one at the beginning.
+
+[2:18] Talk about maintainability. Why do we do care? Why do we
+care if code is maintainable or not? It's usually not the number
+one thing that people go in and say, "I'm going to write code. It's
+going to be the most maintainable code ever." People don't usually
+say that. It's not very exciting.
+
+[2:37] We care because most of your time is actually spent
+maintaining code. How do you know the difference? When you sit down
+at a computer and you open up a text editor, and that text editor
+is blank, that's when you are creating code. When you sit down at a
+text editor and you open up a file and start working, that is
+maintaining code.
+
+[3:01] How many people this week got to open up a new text editor
+and have it completely blank? This week? Hands go down. It's a very
+small percent of everybody who was here. I feel like 10 percent.
+You don't get to do that a ton. I read something one time where
+somebody said, "If you open up a text editor, it's blank and you
+start typing, and then you go up and you go and get coffee and you
+come back, now you're maintaining code, because you're working on
+code that already existed."
+
+[3:36] We spend most of our time maintaining code. How many people
+have inherited code from somebody else? Whoa! Lots of people.
+That's why we care about maintainability.
+
+Who exactly cares? Your company does, for one. I came across this
+when I was thinking about, "Maintainable code is good for the
+company. What do you know? Just end up with [indecipherable 4:
+[3:48] 01] ."
+
+[4:02] That really is the deal. If you're not coding for yourself
+for fun, somebody has hired you to wrote code to create value for
+that company, for that business, for that application. They
+actually care. Your code is supposed to keep working after you
+leave. That's why they hired you. If they wanted it to just work
+while you were there, that would be a really messed up business.
+
+[4:30] Your co-workers care a lot about that. Almost everybody in
+here inherited some code from someone else. Your co-workers care,
+because the code that you're working on right now? Somebody else is
+going to inherit. Some code that you've never seen before is all of
+a sudden going to end up yours sometime soon. Your co-workers care
+a lot.
+
+[4:53] It's a little bit difficult for us. As Web developers, front
+end engineers, UI engineers, whatever you happen to be called,
+we're unique in our field. That's because the sort of stuff we do
+is not taught in college. That's huge for the number of people that
+we have doing this. It's not taught in college, so everybody
+learned on their own. How many people learned on their own what
+they do? Yeah! It's pretty much everybody. That's just the normal
+way that it is.
+
+[5:26] It's very interesting. When you learn on your own, you have
+a tendency to develop techniques and patterns and things that you
+do frequently. That's your way of doing it. As part of that, it's
+also the best way of doing it. It's your way. You know that it
+works. You've done it for years. That's the way you want it to be.
+
+[5:48] I call it the rock star mentality. "It's all about my
+process, man!" I've had developers tell me, "No! You don't
+understand. In order for me to write really good code, just don't
+mess with what I'm doing. It's a creative, beautiful thing. You
+wouldn't understand." The rock star mentality. When you go to work
+with a team, you have to give up a little bit of that. You have to
+set your ego aside a little bit and do what's good for the team.
+
+[6:18] I'm a big sports fan. I think sports teams are a great
+analogy for every other type of team. Inevitably, it's the sports
+teams that function the best as a team that succeed versus the ones
+that have the best individual players. Except in tennis, where
+there are only individual players.
+
+[6:38] Teamwork is really what we're talking about here. Whenever
+you're talking about maintainability, you're talking about
+developing as a team. How can you work on somebody else's code? How
+can somebody else work on your code with very little trouble?
+
+[6:54] What is maintainable code? I like to say that maintainable
+code continues to work for five years without major changes. Why
+five years? If it's one year, people think that you're doing a
+really lousy job. If every single year you have to rewrite what you
+have from scratch, then you're doing something wrong. You're not
+properly anticipating where things are going.
+
+[7:19] In my experience, every five years you're actually able to
+convince the business that it's worth the time to rewrite. Anything
+shorter than that, it always comes back to you as not being a good
+enough engineer. If you think about this, it's a little bit
+difficult because browser versions come out now several times a
+year. We'll have, like, 12 editions of Chrome this year. I don't
+know. It'll be something insane.
+
+[7:48] How do you make sure that your code continues to work with
+each of those versions without you touching it? That's the key. A
+new browser version comes out? You don't want your code to stop
+working because that new browser version came out. In fact, you
+want your code to continue working regardless of how many new
+browsers came out. It can happen. I've seen it. I've done it.
+
+[8:09] How do we do this? Maintainable code is intuitive. What I
+mean by "intuitive" is, you can look at it and say, "Yeah, that
+makes sense. I get it. I don't need to spend of lot of time trying
+to figure out what this code does. I can look at it and it makes
+sense."
+
+[8:29] Understandable, as well. If you actually come across
+something that is a little bit more complicated, being able to look
+at it and figure it out relatively easily is really important to
+this because it's when you don't understand code that you've
+inherited that you accidentally introduce bugs. I'll talk a little
+bit more about that.
+
+[8:50] Adaptable. Your code has to be able change without breaking
+completely. That's a difficult problem, but you want whoever is
+going to be maintaining your code to be able to come in, make
+changes, and know with a relative degree of certainty that things
+aren't going to explode.
+
+[9:10] Extendable. "Extendable" means that the code can be built
+upon to do more things. You don't have to completely rewrite that
+particular part because you need to add some additional features.
+You can continue to build on top of it.
+
+[9:26] Debuggable. Which is not real word, by the way, if you look
+it up. According to Microsoft Word, anyway. Being debuggable is so
+important. Setting up your code so that somebody can easily step
+through it and figure out what is going on is huge to the
+maintenance process.
+
+[9:44] Lastly, testable. If you write your code in such a way that
+you can write unit tests, you can write function tests, things like
+that, it's going to save you a lot of time down the road. In fact,
+there is a new O'Reilly book I saw out there on writing testable
+code, which seems like it would be a good thing to pick up.
+
+[10:05] Chris Eppstein, creator of Compass, had a great phrase,
+which is, "Be kind to your future self." As you're writing code,
+the person who has to maintain it might actually be you. What would
+you want to do for yourself? Leave a maze Indiana Jones style,
+where there's little tips here and little tips there that you have
+to follow to figure out what the hell you were thinking about five
+years ago? No. You want to leave little bread crumbs along the way
+so you can help yourself, your future self, and other people to
+figure out what's going on.
+
+[10:41] That's when we talk about code conventions. Code
+conventions now are starting to be discussed a lot more, which is
+very exciting. There are actually two types. There is code style,
+styling guidelines, which has to do with syntax and spacing, and
+there's also programming practices, which are baby design patterns,
+common ways of doing certain things.
+
+[11:06] Going to start with the style guide. I'd like to say that
+code style is the way that developers communicate with each other
+through the code. It's a common vocabulary that everybody
+understands and everybody speaks. That lets you move seamlessly
+from file to file to file when you're working in a large project.
+
+[11:32] Donald Knuth. How many people know Knuth? Excellent. He is
+my homeboy. He said, "Programs are meant to be read by humans and
+only incidentally for computers to execute." The code is a
+communication medium between developers, and then it gets
+interpreted by the computer to do something interesting. First and
+foremost, it has to be understandable to developers. If that wasn't
+true, we'd all still be writing assembly right now. In fact, most
+of us probably wouldn't be here because we'd be doing something
+else.
+
+[12:13] Good code is appreciated by people. My buddy Tom, we were
+having a little Twitter conversation back and forth about how
+beautiful my code was and what it was. I wouldn't recommend doing
+that on a first or second date, but a little bit down the line
+might be OK.
+
+[12:37] There is a bunch of guides out there that you can take a
+look at. Doug Crockford, of course, has an opinion about everything
+in JavaScript. He also has an opinion about code conventions, which
+covers both style and programming practices.
+
+[12:53] There's a Google JavaScript style guide that is maintained
+by folks at Google and written by a lot of smart folks at Google. A
+lot of people use this as their starting point when they want to do
+a style guide. The jQuery Core has a style guide, as well. I'm
+sharing all of these with you, by the way, knowing that they all
+have slightly different stylistic tendencies. You should look at
+them and figure out what makes sense for you.
+
+[13:25] Dojo also has one, the style guide. Most recently, Rick
+Waldron from Bocoup has started putting together this project
+called Idiomatic.js, which is also a collection of recommendations
+around coding style and conventions. These are all excellent to go
+and start looking through in order to figure out what sort of style
+you like. I also go through that in the book, comparing and
+contrasting all of the different styles in these different guides.
+
+[13:57] You should be prepared, because when you talk about coding
+style, you will fight. You will fight viciously. You will hate the
+other people on your team. Some people want spaces for indentation,
+and some people want tabs for indentation. I'm not kidding about
+this. I have had in my career a 45 minute conversation about
+indentation. We set up an hour meeting to discuss style guide. 45
+minutes were spent on indentation. That was not a good use of our
+time. I have since learned that we shouldn't be spending so much
+time on such things. However, it's not uncommon to have people on
+the same team disagree.
+
+[14:46] When that happens, you just need to come to an agreement.
+Again, one thing isn't good and the other isn't bad. What's
+important is that there's one way to do it and that everybody does
+it that way. If your process as a rock star is tabs for indentation
+and your team has decided that they're going to do spaces, do the
+spaces. Be a team player. Otherwise, you open up code and it ends
+up looking like this. This is why I always start with indentation
+for something to figure out.
+
+[15:21] How many people have ever opened up a file and before doing
+anything re-indented the entire file? Right. Unless it's indented
+your way, you have no idea what the hell that code is doing. Pick
+one, stick with it, don't mix, because you end up with crap like
+this. It should look like this. It's a lot more readable. It's
+pretty. It makes my heart sing. We move on.
+
+[15:53] Another thing. The less code on one line, the less likely
+you'll encounter a merge conflict. I know that there are some
+people out there that love to write a single line of code that just
+goes on forever. I've seen it in JavaScript, I've seen it in CSS,
+stuff like that. Again, OK if you're the only person working on the
+code. Not OK if you're working on a code base with other people,
+because source control does merges by line.
+
+[16:26] If your entire program is on one line, that's going to be a
+big problem if two people are working on it at the same time. I
+prefer to space things out a little bit. Make your lines as short
+as makes sense to avoid the merge conflicts.
+
+[16:43] Comments. One of my favorite topics. Self-documenting code
+is a myth perpetuated by those who hate to write documentation.
+Firmly believe this. I don't care if you write the best code in the
+world, there is nothing that will make it more understandable than
+a few well-placed comments in that code.
+
+[17:10] The point is, I shouldn't have to actually read the entire
+file before I understand what the code is doing. If I actually have
+to follow through... [mumbles] , that takes a while before you can
+actually grok what the file is doing. Throwing in some comments
+here and there. Not too much. Don't want to repeat what the code is
+doing. That's a little bit silly. Like seasoning, you want to put
+just enough, because that really helps the understanding of other
+people.
+
+[17:42] I love documentation comments for documentation generators.
+They usually look like this, this Javadoc style. At the very least,
+please do this for your methods. Anything more than that is a
+bonus, but at least doing this goes a really long way towards
+developer understanding.
+
+[18:04] Also, difficult-to-understand code. This is something that
+I think a lot of developers miss. If you're writing code that. when
+you look at it, you're like, "I know what this does because I know
+that I did this and I did that and I did that," that's where you
+need some comments because nobody else has that insider knowledge
+that you had when you first wrote that code.
+
+[18:25] This is an example that comes from YUI. There is a very
+long function. When I got to this part, I was like, "Wow." If there
+weren't comments, there I would have no clue what this is doing.
+This really helps out. Any of those little places. Again, like
+leaving Post-It notes for your future self and for other people who
+are looking at the code is very useful.
+
+[18:48] Very important one. Code that might seem wrong when you
+first look at it. I have seen so many bugs by well-meaning
+developers. Somebody did something a little funky so that it looked
+wrong. A helpful colleague came along and was like, "Uh-oh, that
+dude totally messed up. I'm going to fix this. He's going to be so
+happy." Then what happens? Regression. An old bug all of a sudden
+pops up again. That's not cool.
+
+[19:19] I don't know if this laser thing is going to work. Let's
+try it. Have a little equal sign. Initially, you would look at it
+and go, "That's a little weird," because you expect a Boolean value
+as the control condition, yet there's an assignment in there.
+Clearly that must be a mistake. I'm just going to add the double
+equals in there. I'm going to fix that problem. Except in this
+case, it was actually intentional. The only way that you know that
+is because there's a comment there saying, "Note -- Assignment. I
+meant to do that. Please don't 'fix' this."
+
+[19:53] Another common place where this happens is when you have
+browser-specific code due to an error that exists in just one
+browser. _[coughs]_ IE.
+
+_[laughter]_
+
+[20:04] A lot of times you'll do the standard thing. Then you'll
+test in another browser and you'll find that the standard thing
+doesn't work, so you'll have to hack something together just to
+make sure that it works. If you were to look at that, you would
+say, "This guy obviously didn't know what was going on. If he did,
+he would just use the standard thing. Clearly, we all know that
+that works everywhere." And then removing the other part. All of a
+sudden, you have a regression again. Any time there's something
+that might seem like a mistake, that's a good place to throw in a
+little comment.
+
+[20:40] Naming. One of the hard parts of coding. Use logical names,
+please. Anybody in Ken Brewster's talk prior to this? Yeah. I love
+Ken. I used to work with Ken at Yahoo. But oh my God, looking at
+his code makes my brain explode. Part of that is because he uses
+all single-character variables in his JavaScript. That's great for
+him to understand, but if I had to work on his code, I would
+probably start by replacing all of those with more logical names.
+
+[21:24] Use logical names for both your functions and your
+variables. Don't worry about the length. Name it the way that it
+should be named. You can always run your code through something
+afterwords to shrink those names if you want to. Remember, you're
+trying to communicate both with yourself and with other developers
+through code, so use logical names.
+
+[21:45] Some little things. Variable names should be nouns. Book,
+person, name, blah, blah, blah.
+
+[21:50] Function names generally begin with a verb. It helps
+because functions do stuff. Verbs do stuff. I think my English
+teacher parents would be very proud of me for that definition.
+Verbs do stuff. Functions that return Booleans usually begin with
+"is" and "has." Just going to blast through this stuff.
+
+[22:13] Avoid useless names like foo and temp. They are moderately
+better than single-character variables but by only the teeniest,
+tiniest bit. Doesn't help me at all.
+
+[22:25] That same code that I showed you earlier, it was like, "Oh
+my God, what the hell is all of this crap? It is just a complete
+and utter nightmare. I have no idea..." I know for a fact, by the
+way, that this was handwritten by somebody whose name I won't
+mention.
+
+[22:44] Camel casing is the way that we usually name things in
+JavaScript. That's because that's how the native APIs are done.
+Each word is separated by a capital letter of the next word. In
+cases of variables, functions, stuff like that, you start with
+lower case. You have myName, sayName, all of this stuff.
+
+[23:10] What about acronyms? Love this question. It's one of my
+favorite ones to deal with with camel case. You can either treat an
+acronym like it's a word so everything is lower case. If it's a new
+word, then you have an initial uppercase letter. Or you can just
+treat it like an acronym so it's all uppercase. When you start to
+look at native APIs for this stuff, you have getElementById. "ID"
+is treated like a word here. It's get ElementById, for a slightly
+Freudian twist.
+
+[23:47] Then we have innerHTML which is treated like an acronym.
+JavaScript itself is insanely inconsistent in this. Please pick
+one. Stick with it. This is my favorite one.
+
+_[laughter]_
+
+[24:02] No, wait. You have "XML," which is an acronym, and then you
+have "HTTP." which is an acronym. What is going on? Oh my God. I
+just can't deal with it.
+
+[24:24] Some exceptions. If you're using constant-like variables
+because JavaScript doesn't have constants yet, a lot of times
+you'll see this pattern. This is recommended in a lot of the style
+guides to use all uppercase and underscore to separate words.
+That's a holdover from C and C++ where that's pretty common. It's
+actually very useful to make sure you that don't accidentally
+assign to something that you intend to be a constant.
+
+[24:51] Constructors usually have the first letter be uppercase.
+
+[24:57] Now I'm going to talk a little bit about programming
+practices. The style stuff, there's a lot more to that. Go look at
+the style guides. Read the book. You could literally talk three
+hours on just style stuff. I want to move along because I know
+we're at the end of the day.
+
+[25:13] Programming practices. This is one of my favorite quotes.
+"There are two ways of constructing a software design. One way is
+to make it so simple that there are obviously no deficiencies, and
+the other is to make it so complicated that there are no obvious
+deficiencies." This dude is one of the guys who came up with
+quicksort. If you were in a computer science program, you probably
+learned about it.
+
+[25:41] Programming practices help to make your code simple so that
+other people can understand it, you can understand it, and things
+don't break.
+
+[25:50] One of my favorite practices is making sure to keep the
+front end layers separate. You have your CSS, which is for
+presentation, you have your JavaScript, which is for behavior, and
+you have your HTML, which is for your data and your structure. I
+like to keep those as separate as possible.
+
+[26:08] Basically, don't cross the streams. Who thought they would
+see a "Ghost Busters" reference today? Ralph, really? You did?
+That's incredible. You saw the slides online earlier. I know,
+right?
+
+[26:24] This is bad. I'm guessing all of you know this is bad. If
+you don't, this is bad.
+
+_[laughter]_
+
+[26:33] Putting JavaScript inline in your HTML is something that
+you should avoid at all costs. Why? I'm going to go back to my made
+up word, "debuggable." If you come across a JavaScript error, where
+do you want to go to find that error? In your JavaScript files. If
+there's a JavaScript error, you don't want to have to go into your
+HTML. That doesn't make any sense. You lose a lot of time that way.
+
+[27:04] Also, keep your HTML out of JavaScript. I absolutely cannot
+stand when I see long strings of HTML embedded inside of
+JavaScript. Why? Same thing. If there's something wrong with your
+layout, where do you want to go to find the problem? Your HTML and
+your templates. You don't want to have to dig through your
+JavaScript because that particular thing happened to be generated
+in the JavaScript while everything else was generated someplace
+else.
+
+[27:32] Just as an asterisk to this, I'm not saying don't use
+things like Mustache and Handlebars and stuff like that. I'm
+actually saying use those because that allows you to keep your
+templates all in one place. Then you can compile it into JavaScript
+that you don't have to edit by hand. That means if there's a
+problem in your layout, you can go to the templates, fix it in the
+templates, and then pull that back into your JavaScript. It's a
+great solution to avoid this problem.
+
+[27:59] Another one is to actually pull back markup from the server
+and inject it into the page, but do not have HTML strings inside of
+your JavaScript. Big pain.
+
+[28:10] Keep JavaScript out of CSS. Thankfully, IE has finally
+removed this capability. Thank God.
+
+[28:17] I've got to tell you a little story. It's very little, I
+promise. We're at the end of the day. I was working at a company
+several years ago before I moved to California. There was a
+JavaScript error. I spent a day trying to figure out where that
+JavaScript error was coming from. I couldn't do it. The debugger
+wasn't picking it up. At that time it was, of course, IE6 and
+Visual Studio I was using. I was pulling out hair. At the time I
+had hair. I was pulling it out.
+
+[28:50] Finally, I was like, "You know what? I'm going to do this
+as brute force as I can. I'm going to start removing JavaScript
+from the page." I removed it function by function and then file by
+file until I had no JavaScript on the page, and hit F5. The
+JavaScript error popped up. At that point, I was about to go crazy.
+Ti was like, "This should not technically be possible if there's no
+JavaScript on the page. And there's a JavaScript error."
+
+[29:23] It was a good thing that the alcohol was on the other side
+of the building. I don't know why. To this day, I still have no
+idea what divine inspiration caused me to go look in the CSS and
+find one of these expressions, but that's what it was. That was
+actually when I first came up with this rule. It's like,
+[sarcastically] "Yeah. When I see a JavaScript error, the first
+place I think to go and look for it is in CSS." Don't do it.
+
+[29:50] Keep CSS out of JavaScript. Modifying that style property
+on elements is not an awesome idea. Why? Same thing. If there's
+something wrong with your styling, you want to be able to go to
+your CSS and address it there. You don't want to look there, spend
+days trying to figure out where it's coming from, only to have it
+in your JavaScript. It's a big pain.
+
+[30:11] Event handlers. A lot of people do event handlers the wrong
+way. That is the way that you see here. There's too much going on
+in this event handler. It's getting a bunch of data off of the
+event, it's creating a popup, and it's showing it or something like
+that. Your event handler should be very small and only handle
+events themselves.
+
+[30:36] This is a good first step. This event handler is just
+handling the event, and then it's calling something else to
+actually perform an action. That's useful in terms of testability.
+Now I can call showPopup from wherever I want. It doesn't have to
+be from within that event handler.
+
+[30:55] I could call it from handleClick. I could also call it from
+something like onMouseDown, onHover if you want to really piss
+people off, or any place like that. That's what makes your code
+more testable -- being able to get at different pieces of the code
+without actually having to go through and interact with it like a
+normal user.
+
+[31:16] This is still not the best, because you're passing the
+event object around. I hate passing the event object around. Why?
+Because then if you want to call that method someplace else, you
+have to have an event object to pass it. It's also not very
+transparent as to what you care about on that event object.
+
+[31:35] In this case, I only care about two pieces of data --
+client X and client Y. How do I know that from the outside? I
+don't. I actually have to step out the entire event object. That's
+not cool. It would be much better to do it this way.
+
+[31:50] Your handleClick, all it does is take the data that is
+needed for the next step and hand that off. showPopup is actually a
+completely standalone function at this point. You can pass it an X
+and a Y however you want for testing. Or if you just decide at a
+different part of your application you want to use different values
+in there, you can do that. handleClick just becomes something
+that's part of your interface rather than something that is part of
+your core functionality. You can change event handlers later really
+easily. It is full of win all around.
+
+[32:28] Don't modify objects you don't own. Please, for heaven's
+sake. This is something I actually started talking about about five
+years ago. People started biting my head off very quickly about it.
+"JavaScript is dynamic! I can just add whatever crap I want in
+there. It's totally OK because I'm a rock star! We do that." Again,
+it's OK if you're the only one working on this project. It's OK to
+mess around however you want.
+
+[33:05] As soon as you're working on a team, modifying objects that
+you don't own is terrible. Why? Because the objects that you don't
+own are either part of the browser API themselves or they're part
+of a library. The other people on the team who are using those have
+an expectation about how they're going to work. If you change that,
+you've broken that expectation, and now it's basically a minefield.
+Nobody knows what to expect in that development environment
+anymore.
+
+[33:38] I actually had this happen to me on one of my jobs. We were
+using YUI 2. There was a method on event called stopEvent. We had
+an error. Literally three developers, including myself, were trying
+to figure out where this error was coming from.
+
+[33:57] We finally were able to track it down after several days to
+somebody who had overridden stopEvent with something else because
+they had a specific use case. They thought that stopEvent would be
+much more useful if it did something else. Didn't tell any of us.
+We were all using it the way that it was documented, and stuff
+broke.
+
+[34:20] Overriding methods is bad. Adding new methods is bad as
+well because you don't know what browsers are going to add in the
+future. You may add something that has the same name as something
+that browser adds in the future. That is a problem because chances
+are they won't work exactly the same.
+
+[34:41] Case in point. The Prototype JavaScript library invented
+document.getElementsByClassName. That was part of that library
+before it was part of HTML5. HTML5 copied it from Prototype. It is
+a very cool function. The problem is that, because Prototype
+implemented it their way and the HTML5 way was slightly different,
+there was an incompatibility there that caused people who were
+using Prototype to have their code break when these HTML5 browsers
+started coming out.
+
+[35:16] Prototype was trying to do the right thing. They basically
+said, "If this function already exists, don't override it, but if
+it doesn't exist, then add it." But because those two worked
+slightly differently and people were coding against their original
+version, when the HTML5 version came out, the world broke.
+
+[35:35] It was unfortunate, but a good lesson on why you shouldn't
+be adding methods to objects that you don't own. I wrote a very
+lengthy blog post about that. If you want to learn more about it,
+it's also in the book. We'll move on.
+
+[35:48] Avoid global functions and variables. This one you've
+probably heard multiple times. My previous example was lousy about
+that. I would fix it by throwing it onto a top level global.
+
+[36:01] Throw your own errors. This is something that not enough
+developers do. When I was a young developer...It sounds like the
+beginning of a song or something. When I was a young developer,
+working in Java...It does sound like the beginning of a song!
+
+[36:23] I remember seeing this throw. It was a throw new exception.
+I thought, "Why the hell would you do that? You're causing an
+error? Isn't our whole job as developers to avoid errors?" That
+didn't make any sense to me whatsoever. Now, being older and wiser
+-- well, arguably wiser -- I realize that throwing errors is
+actually a really, really helpful thing.
+
+[36:45] This is another Post-It note that you can leave yourself in
+your code. It really helps when you know that there's an area where
+an error might occur and you might have a hard time tracking it
+down.
+
+[36:58] In this case, this function could fail if Element was null.
+You'd get some really stupid browser error message like, "Class
+name cannot be read from null," or some such thing like that, which
+tells you nothing at all. You start digging through the code to
+figure out where that was. You set breakpoints. You eventually
+figure it out. I don't like when errors happen and I have no idea
+where they're coming from. That's not good.
+
+[37:25] If you throw your own error, you can basically leave
+yourself a note to say, "If this condition happened, here is what
+the problem is." If I didn't get an element being passed in, it's
+going to throw an error. I always like putting the method name in
+there, because it helps me very quickly get to the point of knowing
+where that's coming from and what the actual error is.
+
+[37:48] Don't go crazy. Don't try to mimic statically typed
+languages. Don't do this for every single argument of every single
+function. Then you're doing it too much. Just the places where
+either you end up seeing an error or you're exposing an API where
+one...Usually, one of the arguments is most important to that
+function. Or two arguments. Just to help people out.
+
+[38:16] It's especially important...Libraries like YUI and jQuery
+usually do a good job this. If you call something and you're
+passing in a null value, they tend to give you an error message
+that makes sense. It can help you track down a little bit easier.
+
+[38:31] Avoid null comparisons. I see way too many pieces of code
+that just say, "If this thing isn't equal to null then do
+something." That's usually not specific enough. Unless you had a
+variable that you specifically set to null and then it had a chance
+of having its value changed later, so you're basically just
+checking to see if the value changed from the first that one you
+set, it's usually not enough to test against null.
+
+[38:59] In this example, if Items is not equal to null, you're
+going to do a bunch of stuff. That means you could pass in True, 1,
+a string, any of that. It would go through and then it would fail
+on sort. Doing something like this -- items instance of array -- is
+really helpful, one, because it states your intent a little bit
+better. It also protects you from some of those fall-throughs from
+bad checking.
+
+[39:32] If you're checking against specific object types you can
+use instanceof. object.instanceof the constructor returns true if
+it's an instance of that. typeof is for primitive values. Strings,
+booleans, numbers, even functions work very well. In case you
+weren't aware, typeof(null) is equal to Object. Be careful of that.
+
+[39:59] Separate config data. I don't like to see strings or other
+values inside of JavaScript that are application configuration or
+things that will change. In this example, you have a UI string,
+something that's going to be presented to the user. You also have a
+URL. These are both things that I guarantee you will change and
+will probably change frequently before you ship. For that reason,
+you want to separate them out. You want to keep that data away from
+your application logic.
+
+[40:36] When you want to change that data, you don't want to risk
+messing up your application logic. When you change data, you
+shouldn't have to rerun unit tests to make sure that the logic
+still remains the same. Separating it out like this is a good first
+step.
+
+[40:53] Absolutely all URLs should be pulled out of the body of
+your JavaScript. They change way too frequently. Strings that are
+displayed to the user, any HTML like I talked about earlier. Use
+some templating like Mustache, Dust, associated things.
+
+[41:10] Any settings, such as how many things are on the page. Any
+repeated unique values. If you are using the same class name
+multiple times, if you are using the same maximum number of
+whatever multiple times, that should be pulled out because you want
+to have one spot to change that value rather than multiple ones. Of
+course, any value that can change in the future.
+
+[41:35] I wrote this little tool to help with this. It's called
+Props2Js. I do give props to JS, but that's not the point. This
+will take Java properties files and convert it into JavaScript for
+you so you can even have an easier way of managing your
+configuration data as just simple key value pairs, simpler syntax,
+and then be able to convert that into JavaScript for your project.
+
+[42:01] Last section is on automation. When I first started talking
+about this several years ago, automation for JavaScript in front-
+end stuff was almost non-existent. Now it's around. There's a bunch
+of tools. I'm just going to breeze through this quickly to give you
+an idea. There's a lot more in the book. There's a ton of resources
+online I'll talk about.
+
+[42:27] I think that build processes are magic. I was sad that it
+took so long before JavaScript developers took to this. The idea
+that you can take a whole bunch of files and then process them in
+some way and come out with a concatenated file or a couple of files
+at the other end is awesome. It makes your life so much easier and
+it makes your code more maintainable because you can automatically
+run all kinds of checks on your code to make sure that things are
+still working the way they should be.
+
+[42:59] When you're talking about a build, I'm talking about a
+bunch of steps. You could be adding and removing debugging code.
+You could be concatenating files, generating documentation,
+validating code, testing your code, minifying files, deploying
+files. All of these are great parts of automation.
+
+[43:21] A bunch of tools to help with all of this stuff. js-build-
+tools has a pre-processor, the only one that I've found thus far
+that's pretty easy to use, where you can very easily tag code as
+being just for debug mode or another mode using C style #ifdef,
+stuff like that.
+
+[43:44] For documentation, JS Doc is one of the more popular ones.
+By the way, all of these slides will be online, so don't worry
+about jotting down all these URLs. YUIDoc is another one that works
+similar to JSDoc. One that's a little bit different is Docco. It
+creates side-by-side documentation with source code.
+
+[44:05] To validate code, there's JSLint. Crockford has since
+updated the design of that site. I was way too lazy to fix my
+slides, but wow! There's also JSHint, which has a bunch more
+configuration options.
+
+[44:23] For minifying files, YUI Compressor, which was the gold
+standard for a long time because it does that variable name
+replacement, replacing a lot of the function names and variable
+names with shorter versions of them automatically for you.
+
+[44:41] Then there's UglifyJS, which got more popular recently. It
+does that and a bunch of other weird stuff to your code to make it
+even smaller. A lot of projects are moving to this now. There's the
+Closure Compiler from Google which does a lot of similar things as
+Uglify and YUI Compressor, and is also built to work with a lot of
+their other tools, as well.
+
+[45:07] For the overall build, I really love Apache Ant, which is a
+Java build tool. It works really great for JavaScript because it
+has a lot of built-in tasks that are really useful, such as for
+concatenating files, things like that. Julien Lecomte, who wrote
+the YUI Compressor, wrote a really good article about using Ant for
+building JavaScript and CSS and stuff like that.
+
+[45:34] More recently, there is Grunt, which is a JavaScript-
+based... _[pauses]_ That is my "you better hurry the hell up." Grunt
+is a JavaScript-based build tool. There's a little article about
+that, too, that you can grab off of the slide.
+
+[45:59] For your build, you actually want to have a bunch of
+different types of builds. You have your deployment, your testing,
+your development. All of those can do different sets of each of
+these. That's a really great way to both work locally as a
+developer and also to continue on through your deployment process.
+
+[46:21] At the end. Code style guidelines, really important to make
+sure everybody on your team is speaking the same language. Loose
+coupling of layers really helps with debuggability. Good
+programming practices, also for debugging. Code organization and
+automation will help you bring some sanity into your process.
+
+[46:41] If I can leave you with one last thought. Always code as if
+the guy who ends up maintaining your code will end up being a
+violent psychopath who knows where you live. That is it. These are
+various places to reach me.
+
+_[applause]_
