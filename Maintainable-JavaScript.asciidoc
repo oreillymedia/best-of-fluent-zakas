@@ -72,7 +72,7 @@ and have it completely blank? This week? Hands go down. It's a very
 small percent of everybody who was here. I feel like 10 percent.
 You don't get to do that a ton. I read something one time where
 somebody said, "If you open up a text editor, it's blank and you
-start typing, and then you go up and you go and get coffee and you
+start typing, and then you get up and you go and get coffee and you
 come back, now you're maintaining code, because you're working on
 code that already existed."
 
