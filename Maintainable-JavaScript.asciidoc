@@ -11,6 +11,8 @@ Writing JavaScript for fun and writing it professionally are two different thing
 
 === Video Transcript
 
+[0:02] Thank you all for coming. I know it's the end of the day.
+Everybody's probably really tired from all of the knowledge that's
 been crammed into your brains. I appreciate you coming by. Am I the
 only one who's wearing a sport coat on stage?
 
