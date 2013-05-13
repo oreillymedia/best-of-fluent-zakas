@@ -1,0 +1,5 @@
+== The Best of Fluent: Nicholas Zakas
+
+This repo contains the source files for a short video compilation hosted on http://chimera.labs.oreilly.com/books/1234000001640/[O’Reilly Labs]. 
+
+Full transcriptions of all videos are included. See an error, omission, or typo? Send us a pull request. We’ll merge it in and re-publish.
