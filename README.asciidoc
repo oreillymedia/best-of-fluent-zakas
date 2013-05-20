@@ -1,4 +1,4 @@
-= The Best of Fluent (2012): Nicholas Zakas
+== The Best of Fluent (2012): Nicholas Zakas
 
 Nicholas C. Zakas is a Web Software Engineer who specializes in user interface design and implementation. He spoke at the 2012 O’Reilly Fluent Conference. This "Best Of" repository contains resources about his talks, including videos, transcripts, and links to other resources. His talks include:
 
@@ -6,6 +6,6 @@ Nicholas C. Zakas is a Web Software Engineer who specializes in user interface d
 
 * http://chimera.labs.oreilly.com/books/1234000001640/ch02.html[Live interview at the event]
 
-== Contributing
+=== Contributing
 
 If you find any errors or you’d like to contribute to this repository, fork it and send us a pull request.
